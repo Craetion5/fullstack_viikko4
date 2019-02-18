@@ -11,11 +11,20 @@ const totalLikes = (blogs) => {
 }
 
 const favoriteBlog = (blogs) => {
-    let likes = 0
+    if (blogs.length === 0){
+        return null
+    }
+    let likes = -1
+    let index = -1
+    let i = 0
     blogs.forEach(element => {
-        likes = likes + element.likes
+        if (element.likes > likes) {
+            likes = element.likes
+            index = i
+        }
+        i++
     });
-    return likes
+    return blogs[index].title + "\n" + blogs[index].author + "\n" + blogs[index].likes + " likes"
 }
 
 module.exports = {

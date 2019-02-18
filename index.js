@@ -39,6 +39,18 @@ app.post('/api/blogs', (request, response) => {
     })
 })
 
+app.delete('/api/blogs/:id', (request, response) => {
+  //try {
+  //  await Blog.findByIdAndRemove(request.params.id)
+  //  response.status(204).end()
+  //} catch (exception) {
+  //}
+  Blog.findByIdAndRemove(request.params.id)
+  .then(result => {
+      response.status(204).end()
+  })
+})
+
 const server = http.createServer(app)
 server.listen(config.PORT, () => {
   console.log(`Server running on port ${config.PORT}`)
